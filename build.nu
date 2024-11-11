@@ -9,7 +9,7 @@ def build [] {
 
 def run [] {
   build
-  ./build/app.exe
+  ./build/bin/app.exe
 }
 
 def clean [] {

@@ -1,23 +1,24 @@
 cmake_minimum_required(VERSION 3.5.0)
 include(CMakePrintHelpers)
 
-project(datatructures VERSION 0.1.0 LANGUAGES C CXX)
+project(my_cmake_project VERSION 0.1.0 LANGUAGES CXX)
 
-include(CTest)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-add_executable(app)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin) 
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib) 
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
 add_compile_definitions(-DLINKED_LIST)
 
 set(CMAKE_CXX_FLAGS  "-Wextra -Wall")
 
-target_include_directories(app PUBLIC "lib")
-
-FILE(GLOB_RECURSE SRC_FILES "src/*.cpp")
-target_sources(app PRIVATE ${SRC_FILES})
-target_sources(app PRIVATE main.cpp)
-
 enable_testing()
 
-
+add_subdirectory(app)
+add_subdirectory(datastructures)
+# add_subdirectory(tests)

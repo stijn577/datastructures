@@ -1,0 +1,10 @@
+add_executable(app)
+
+target_include_directories(app PUBLIC lib)
+target_include_directories(app PUBLIC ${CMAKE_SOURCE_DIR}/datastructures/lib)
+
+file(GLOB_RECURSE SRC_FILES "src/*.cpp")
+target_sources(app PRIVATE ${SRC_FILES})
+target_sources(app PRIVATE "${CMAKE_SOURCE_DIR}/app/main.cpp")
+
+target_link_libraries(app datastructures)
