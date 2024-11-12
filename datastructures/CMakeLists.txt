@@ -1,7 +1,7 @@
 add_library(datastructures STATIC)
 
 # include directories
-target_include_directories(datastructures PUBLIC lib)
+target_include_directories(datastructures PUBLIC ${CMAKE_SOURCE_DIR}/datastructures/lib)
 
 # source files
 file(GLOB_RECURSE SRC_FILES "src/*.cpp")

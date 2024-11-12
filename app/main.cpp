@@ -12,10 +12,12 @@ int main(void) {
 #ifdef LINKED_LIST
 
   auto list = LinkedList<int>(dis(gen));
+
   for (size_t i = 0; i < 20; i++) {
     list.push_back(dis(gen));
   }
 
   std::cout << list;
+
 #endif
 }

@@ -6,7 +6,6 @@
 
 template <typename T> class LinkedList {
 private:
-  // Node class is private and nested within LinkedList
   class Node {
   private:
     T data;
@@ -51,11 +50,11 @@ private:
     }
   };
 
-  Node inner;
+  std::unique_ptr<Node> inner;
 
 public:
   LinkedList() = default;
-  LinkedList(T data) : inner(data) {}
+  LinkedList(T data) { inner = std::make_unique<Node>(Node(data)); }
   ~LinkedList() { std::cout << "Deleted Linkedlist\n"; }
 
   // Move constructor
@@ -74,21 +73,36 @@ public:
   LinkedList &operator=(const LinkedList &) = delete;
 
   friend std::ostream &operator<<(std::ostream &os, const LinkedList<T> &obj) {
-    os << "LinkedList with nodes: " << obj.inner << "\n\n";
+    os << "LinkedList with nodes: " << *obj.inner << "\n\n";
     return os;
   }
 
   void push_back(T data) {
-    if (!inner.next) {
-      inner.next = std::make_unique<Node>(Node(data));
+    if (!this->inner) {
+      this->inner = std::make_unique<Node>(Node(data));
       return;
     }
 
-    Node *iter = inner.next.get();
+    if (!this->inner->next) {
+      this->inner->next = std::make_unique<Node>(Node(data));
+      return;
+    }
+
+    Node *iter = this->inner->next.get();
     while (iter->next != nullptr) {
       iter = iter->next.get();
     }
 
     iter->next = std::make_unique<Node>(Node(data));
+  }
+
+  void push_front(T data) {
+    if (this->inner == nullptr) {
+      this->inner = data;
+      return;
+    }
+
+    auto new_inner = Node(data);
+    new_inner.next = std::make_unique(this->inner);
   }
 };

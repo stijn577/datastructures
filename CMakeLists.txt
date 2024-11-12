@@ -17,8 +17,8 @@ add_compile_definitions(-DLINKED_LIST)
 
 set(CMAKE_CXX_FLAGS  "-Wextra -Wall")
 
-enable_testing()
-
 add_subdirectory(app)
 add_subdirectory(datastructures)
-# add_subdirectory(tests)
+add_subdirectory(tests)
+
+enable_testing()
