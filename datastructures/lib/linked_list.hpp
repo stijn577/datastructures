@@ -73,7 +73,7 @@ public:
   LinkedList &operator=(const LinkedList &) = delete;
 
   friend std::ostream &operator<<(std::ostream &os, const LinkedList<T> &obj) {
-    os << "LinkedList with nodes: " << *obj.inner << "\n\n";
+    os << "LinkedList with nodes:\n" << *obj.inner << "\n\n";
     return os;
   }
 

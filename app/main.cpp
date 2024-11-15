@@ -1,6 +1,5 @@
 #include <iostream>
 #include <random>
-#include <unordered_set>
 
 #include "linked_list.hpp"
 
@@ -18,9 +17,13 @@ int main(void) {
     list.push_back(dis(gen));
   }
 
+  std::cout << "Using iterator to print list:\n";
   for (auto iter = list.begin(); iter != list.end(); ++iter) {
     std::cout << *iter << "\t";
   }
+  std::cout << "X\n\n";
+
+  std::cout << list;
 
 #endif
 }
