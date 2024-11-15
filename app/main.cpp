@@ -14,7 +14,7 @@ int main(void) {
   auto list = LinkedList<int>(dis(gen));
 
   for (size_t i = 0; i < 20; i++) {
-    list.push_back(dis(gen));
+    list.append(dis(gen));
   }
 
   std::cout << "Using iterator to print list:\n";
@@ -23,6 +23,8 @@ int main(void) {
   }
   std::cout << "X\n\n";
 
+  std::cout << list;
+  list.clear();
   std::cout << list;
 
 #endif

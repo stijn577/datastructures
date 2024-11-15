@@ -77,7 +77,7 @@ public:
     return os;
   }
 
-  void push_back(T data) {
+  void append(T data) {
     if (!this->inner) {
       this->inner = std::make_unique<Node>(Node(data));
       return;
@@ -96,7 +96,7 @@ public:
     iter->next = std::make_unique<Node>(Node(data));
   }
 
-  void push_front(T data) {
+  void prepend(T data) {
     if (this->inner == nullptr) {
       this->inner = data;
       return;
@@ -105,6 +105,8 @@ public:
     auto new_inner = Node(data);
     new_inner.next = std::make_unique(this->inner);
   }
+
+  void clear() { inner.reset(); }
 
   class Iterator {
   private:
