@@ -105,4 +105,32 @@ public:
     auto new_inner = Node(data);
     new_inner.next = std::make_unique(this->inner);
   }
+
+  class Iterator {
+  private:
+    Node *current;
+
+  public:
+    Iterator(Node *node) : current(node) {}
+
+    T &operator*() { return current->data; }
+    T *operator->() { return &(current->data); }
+
+    Iterator &operator++() {
+      current = current->next.get();
+      return *this;
+    }
+    Iterator operator++(int) {
+      auto copy = *this;
+      current = current->next.get();
+      return copy;
+    }
+
+    bool operator!=(const Iterator &other) const {
+      return current != other.current;
+    };
+  };
+
+  Iterator begin() const { return Iterator(this->inner.get()); }
+  Iterator end() const { return Iterator(nullptr); };
 };
